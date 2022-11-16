@@ -12,8 +12,8 @@ ner_pipeline = pipeline(model="KBLab/bert-base-swedish-cased-ner", task="ner")
 
 @app.route('/')
 def index():
-  text = "Oskar bor på Södermalm och han är 42 år."
+  text = "Tom bor på Södermalm och han är 45 år."
   print("NER:", ner_pipeline(text))
-  result = map(lambda x: float(x['score']), ner_pipeline(text))
+  result = map(lambda entity: entity | { "score": float(entity['score']) }, ner_pipeline(text))
   print(result)
-  return json.dumps({'response': list(result)})
+  return json.dumps({'entities': list(result)})

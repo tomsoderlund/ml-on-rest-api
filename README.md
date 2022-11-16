@@ -24,7 +24,14 @@ Start up web server:
 
 Response:
 
-    {"response": [0.9998905658721924, 0.998997151851654, 0.9956401586532593, 0.9943753480911255]}
+    {
+      "entities":[
+        { "entity":"PER", "score":0.999692440032959, "index":1, "word":"Tom", "start":0, "end":3 },
+        { "entity":"LOC", "score":0.9984962940216064, "index":4, "word":"S\u00f6dermalm", "start":11, "end":20 },
+        { "entity":"MSR", "score":0.9974410533905029, "index":8, "word":"42", "start":32, "end":34 },
+        { "entity":"MSR", "score":0.9969724416732788, "index":9, "word":"\u00e5r", "start":35, "end":37 }
+      ]
+    }
 
 ## Deploy on Google App Engine
 
