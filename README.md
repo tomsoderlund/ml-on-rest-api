@@ -11,3 +11,8 @@
     export FLASK_DEBUG=true
 
     flask run
+
+## Deploy on Google App Engine
+
+    gcloud config set project [app-slug]
+    gcloud app deploy app.yaml
