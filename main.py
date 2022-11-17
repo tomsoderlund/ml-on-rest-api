@@ -8,12 +8,15 @@ from transformers import pipeline
 
 app = Flask(__name__)
 
-ner_pipeline = pipeline(model="KBLab/bert-base-swedish-cased-ner", task="ner")
+# Models from https://huggingface.co/models
+ml_model = 'KBLab/bert-base-swedish-cased-ner'
+ner_pipeline = pipeline(model=ml_model, task='ner')
 
 @app.route('/')
 def index():
-  text = "Tom bor på Södermalm och han är 45 år."
-  print("NER:", ner_pipeline(text))
-  result = map(lambda entity: entity | { "score": float(entity['score']) }, ner_pipeline(text))
-  print(result)
-  return json.dumps({'entities': list(result)})
+  text = request.args.get('text', 'Tom bor i Stockholm och han är 45 år.')
+  pipeline_results = ner_pipeline(text)
+  print('NER results:', pipeline_results)
+  pipeline_results_adjusted = map(lambda entity: entity | { 'score': float(entity['score']) }, pipeline_results)
+  print(pipeline_results_adjusted)
+  return json.dumps({'entities': list(pipeline_results_adjusted)})

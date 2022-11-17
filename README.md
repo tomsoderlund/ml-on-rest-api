@@ -20,7 +20,7 @@ Start up web server:
 
 ## Testing
 
-    curl http://localhost:4001
+    curl "http://localhost:4001/?text=Tom%20bor%20i%20Stockholm%20och%20han%20%C3%A4r%2045%20%C3%A5r."
 
 Response:
 
